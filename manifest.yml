@@ -1,0 +1,7 @@
+name: netlify-plugin-seo-lint
+inputs:
+  - name: host
+    description: The host used to determine internal links
+  - name: threshold
+    description: The minimum priority that should be considered a build failure. Can be error/warning or an integer
+    default: error
