@@ -26,3 +26,4 @@ The following configuration options can be used:
 
 * `host`: The host used to determine internal links. Defaults to Netlify's [`DEPLOY_PRIME_URL`](https://docs.netlify.com/configure-builds/environment-variables/#deploy-urls-and-metadata).
 * `threshold`: The minimum priority that should be considered a build failure. Can be either `error` or `warning` which will be compared against the test's level, or an integer which will be compared against the test's priority. Defaults to `error`.
+* `verbose`: Output all errors/warnings, even those below the threshold. Defaults to `true`.
