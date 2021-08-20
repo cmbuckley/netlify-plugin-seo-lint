@@ -32,9 +32,14 @@ module.exports = {
                 console.log(path);
 
                 results[path].forEach(issue => {
-                    const level = issue.level.replace(/s$/, '');
-                    console.log('  ' + prettyPrint(level, issue.priority, issue.message));
-                    failures.push(isFailure(inputs.threshold, level, issue.priority));
+                    const level = issue.level.replace(/s$/, ''),
+                        fail = isFailure(inputs.threshold, level, issue.priority);
+
+                    if (inputs.verbose || fail) {
+                        console.log('  ' + prettyPrint(level, issue.priority, issue.message));
+                    }
+
+                    failures.push(fail);
                 });
             }
         });
