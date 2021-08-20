@@ -6,6 +6,7 @@
   "author": "Chris Buckley <chris@cmbuckley.co.uk>",
   "license": "MIT",
   "dependencies": {
-    "@nickreese/seo-lint": "^1.1.2"
+    "@nickreese/seo-lint": "^1.1.2",
+    "ansi-colors": "^4.1.1"
   }
 }

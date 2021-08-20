@@ -1,4 +1,11 @@
 const { Tester } = require('@nickreese/seo-lint');
+const ansi = require('ansi-colors');
+
+// aliases for error levels
+ansi.theme({
+    error:   ansi.red,
+    warning: ansi.yellow,
+});
 
 function isFailure(threshold, level, priority) {
     const levels = ['warning', 'error'];
@@ -8,6 +15,10 @@ function isFailure(threshold, level, priority) {
     }
 
     return threshold <= priority;
+}
+
+function prettyPrint(level, priority, message) {
+    return ansi[level](level) + ` (${priority}): ${message}`;
 }
 
 module.exports = {
@@ -22,7 +33,7 @@ module.exports = {
 
                 results[path].forEach(issue => {
                     const level = issue.level.replace(/s$/, '');
-                    console.log(`  ${level} (${issue.priority}): ${issue.message}`);
+                    console.log('  ' + prettyPrint(level, issue.priority, issue.message));
                     failures.push(isFailure(inputs.threshold, level, issue.priority));
                 });
             }
