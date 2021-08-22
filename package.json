@@ -5,6 +5,11 @@
   "main": "index.js",
   "author": "Chris Buckley <chris@cmbuckley.co.uk>",
   "license": "MIT",
+  "scripts": {
+    "version": "git commit -am \"Release $npm_package_version\" && git checkout HEAD^{}",
+    "postversion": "npm publish --access=public && git checkout -",
+    "postpublish": "git push --tags"
+  },
   "dependencies": {
     "@nickreese/seo-lint": "^1.1.2",
     "ansi-colors": "^4.1.1"
