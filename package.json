@@ -18,6 +18,10 @@
   "author": "Chris Buckley <chris@cmbuckley.co.uk>",
   "license": "MIT",
   "repository": "cmbuckley/netlify-plugin-seo-lint",
+  "scripts": {
+    "postversion": "npm publish",
+    "postpublish": "git push --tags"
+  },
   "dependencies": {
     "@nickreese/seo-lint": "^1.1.2",
     "ansi-colors": "^4.1.1"
