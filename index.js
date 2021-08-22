@@ -21,10 +21,25 @@ function prettyPrint(level, priority, message) {
     return ansi[level](level) + ` (${priority}): ${message}`;
 }
 
+const siteRules = {
+    orphanPages: {
+        message: 'The following pages are orphaned:',
+        output: orphanPages => '  ' + orphanPages.join('\n  ')
+    },
+    duplicateTitles: {
+        message: 'The following pages have duplicate titles:',
+        output: duplicates => duplicates.map(pair => '  ' + pair.join(' and ')).join('\n')
+    },
+    duplicateMetaDescriptions: {
+        message: 'The following pages have duplicate meta descriptions:',
+        output: duplicates => duplicates.map(pair => '  ' + pair.join(' and ')).join('\n')
+    },
+};
+
 module.exports = {
     onPostBuild: async ({ constants, inputs, utils }) => {
         const tester = new Tester({ siteWide: true, host: inputs.host || process.env.DEPLOY_PRIME_URL });
-        const results = await tester.folder(constants.PUBLISH_DIR);
+        const { meta, ...results } = await tester.folder(constants.PUBLISH_DIR);
         let failures = [];
 
         Object.keys(results).forEach(path => {
@@ -41,6 +56,22 @@ module.exports = {
 
                     failures.push(fail);
                 });
+            }
+        });
+
+        Object.keys(siteRules).forEach(siteRule => {
+            if (results[siteRule]) {
+                const ruleSpec = siteRules[siteRule],
+                    level = ruleSpec.level || 'warning',
+                    priority = ruleSpec.priority || 70,
+                    fail = isFailure(inputs.threshold, level, priority);
+
+                if (inputs.verbose || fail) {
+                    console.log(prettyPrint(level, priority, ruleSpec.message));
+                    console.log(ruleSpec.output(results[siteRule]));
+                }
+
+                failures.push(fail);
             }
         });
 
