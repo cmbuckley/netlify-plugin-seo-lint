@@ -20,6 +20,8 @@ Install to your `devDependencies` with npm:
 npm i -D netlify-plugin-html-validate
 ```
 
+The plugin will run as part of your build, running SEO lint checks against the [publish directory](https://docs.netlify.com/configure-builds/get-started/#definitions).
+
 ## Configuration
 
 The following configuration options can be used:
