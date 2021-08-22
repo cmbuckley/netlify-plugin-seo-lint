@@ -1,10 +1,19 @@
 {
   "name": "netlify-plugin-seo-lint",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Netlify plugin to add SEO linting to builds",
+  "keywords": [
+    "netlify",
+    "plugin",
+    "netlify-plugin",
+    "seo"
+  ],
+  "homepage": "https://cmbuckley.co.uk/netlify-plugin-seo-lint/",
+  "bugs": "https://github.com/cmbuckley/netlify-plugin-seo-lint/issues",
   "main": "index.js",
   "author": "Chris Buckley <chris@cmbuckley.co.uk>",
   "license": "MIT",
+  "repository": "cmbuckley/netlify-plugin-seo-lint",
   "dependencies": {
     "@nickreese/seo-lint": "^1.1.2",
     "ansi-colors": "^4.1.1"
