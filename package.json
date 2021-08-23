@@ -8,6 +8,10 @@
     "netlify-plugin",
     "seo"
   ],
+  "files": [
+    "index.js",
+    "manifest.yml"
+  ],
   "homepage": "https://cmbuckley.co.uk/netlify-plugin-seo-lint/",
   "bugs": "https://github.com/cmbuckley/netlify-plugin-seo-lint/issues",
   "main": "index.js",
