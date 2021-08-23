@@ -8,3 +8,9 @@ inputs:
   - name: verbose
     description: Output all errors/warnings, even those below the threshold
     default: true
+  - name: internalLinksLowerCase
+    description: Whether internal links should be checked to be lower case
+    default: true
+  - name: internalLinksTrailingSlash
+    description: Wether internal links should contain a trailing slash
+    default: true

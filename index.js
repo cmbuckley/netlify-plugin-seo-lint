@@ -38,7 +38,14 @@ const siteRules = {
 
 module.exports = {
     onPostBuild: async ({ constants, inputs, utils }) => {
-        const tester = new Tester({ siteWide: true, host: inputs.host || process.env.DEPLOY_PRIME_URL });
+        const tester = new Tester({
+            siteWide: true,
+            host:     inputs.host || process.env.DEPLOY_PRIME_URL,
+            preferences: {
+                internalLinksLowerCase:     inputs.internalLinksLowerCase,
+                internalLinksTrailingSlash: inputs.internalLinksTrailingSlash,
+            },
+        });
         const { meta, ...results } = await tester.folder(constants.PUBLISH_DIR);
         let failures = [];
 
