@@ -23,7 +23,7 @@
     "postpublish": "git push --tags"
   },
   "dependencies": {
-    "@nickreese/seo-lint": "^1.1.2",
+    "@nickreese/seo-lint": "cmbuckley/seo-lint#fixes-build",
     "ansi-colors": "^4.1.1"
   }
 }
