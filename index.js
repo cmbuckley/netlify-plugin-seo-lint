@@ -40,7 +40,7 @@ module.exports = {
     onPostBuild: async ({ constants, inputs, utils }) => {
         const tester = new Tester({
             siteWide: true,
-            host:     inputs.host || process.env.DEPLOY_PRIME_URL,
+            host:     inputs.host || process.env[process.env.CONTEXT == 'production' ? 'URL' : 'DEPLOY_PRIME_URL'],
             preferences: {
                 internalLinksLowerCase:     inputs.internalLinksLowerCase,
                 internalLinksTrailingSlash: inputs.internalLinksTrailingSlash,
