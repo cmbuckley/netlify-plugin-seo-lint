@@ -1,4 +1,5 @@
 const { Tester } = require('@nickreese/seo-lint');
+const { substituteVariables } = require('var-expansion');
 const ansi = require('ansi-colors');
 
 // aliases for error levels
@@ -36,11 +37,29 @@ const siteRules = {
     },
 };
 
+/**
+ * Get the host parameter
+ *
+ * Normally, will be $URL (prod) or $DEPLOY_PRIME_URL.
+ * Can be overridden in config, possibly using parameter expansion.
+ */
+function getHost(inputs) {
+    if (inputs.host) {
+        if (!inputs.hostExpansion) { return inputs.host; }
+
+        const { value, error } = substituteVariables(inputs.host, {env: process.env});
+        if (!error) { return value; }
+        utils.build.failBuild(error);
+    }
+
+    return process.env[process.env.CONTEXT == 'production' ? 'URL' : 'DEPLOY_PRIME_URL'];
+}
+
 module.exports = {
     onPostBuild: async ({ constants, inputs, utils }) => {
         const tester = new Tester({
-            siteWide: true,
-            host:     inputs.host || process.env[process.env.CONTEXT == 'production' ? 'URL' : 'DEPLOY_PRIME_URL'],
+            siteWide:    true,
+            host:        getHost(inputs),
             preferences: {
                 internalLinksLowerCase:     inputs.internalLinksLowerCase,
                 internalLinksTrailingSlash: inputs.internalLinksTrailingSlash,
