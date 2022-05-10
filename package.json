@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@nickreese/seo-lint": "cmbuckley/seo-lint#fixes-build",
-    "ansi-colors": "^4.1.1"
+    "ansi-colors": "^4.1.1",
+    "var-expansion": "^0.1.0"
   }
 }
