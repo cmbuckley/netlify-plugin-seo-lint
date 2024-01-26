@@ -1,6 +1,6 @@
 {
   "name": "netlify-plugin-seo-lint",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Netlify plugin to add SEO linting to builds",
   "keywords": [
     "netlify",
@@ -26,7 +26,7 @@
     "@nickreese/seo-lint": "^1.1.2",
     "ansi-colors": "^4.1.1"
   },
-  "engines" : { 
-    "npm" : ">=20.0.0"
+  "engines": {
+    "npm": ">=20.0.0"
   }
 }
